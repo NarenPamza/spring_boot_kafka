@@ -22,6 +22,7 @@ public class MessageController {
 	public ResponseEntity<String> getUser(@PathVariable("name") final String name) {
 		String message = "Yes we are in the entity " + name;
 		
+		// Push message to KakfA QUEUE
 		template.send(TOPIC,message);
 		return new ResponseEntity<>(message, HttpStatus.OK);
 	}
